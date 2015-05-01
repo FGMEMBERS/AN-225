@@ -13,12 +13,15 @@ AN225 model/animation config.
   
 
   
-  <path>AN225-003-002d14.ac</path>
+  <path>AN225.ac</path>
   <offsets>
     <z-m>0.0</z-m>
     <pitch-deg>0</pitch-deg>
   </offsets>
   
+  <sound>      
+      <path>Aircraft/AN-225/Sounds/AN-225-sound.xml</path>
+  </sound>
   
     <!--Lights, just a little bit more brilliance to the airplane-->
                                    
@@ -225,7 +228,7 @@ AN225 model/animation config.
   </animation>
  
   <model>
-    <path>Aircraft/AN-225/Panels/panel225.xml</path>
+    <path>Aircraft/AN-225/Models/Interior/Panel/panel.xml</path>
       <offsets>
         <x-m> -23.05 </x-m>
         <y-m>   0.00 </y-m>
@@ -233,31 +236,31 @@ AN225 model/animation config.
       </offsets>
    </model>
 
+     <!-- A shadow for OSG without Rembrandt  -->
+  <model>
+    <path>Aircraft/AN-225/Models/shadow.xml</path>
+    <offsets>
+      <x-m> 12.000 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m> -4.39 </z-m>
+      <pitch-deg>0.0</pitch-deg>
+    </offsets>
+  </model>
+  
   
   <model>
   <name>Shuttle</name>
-  <path>Aircraft/AN-225/Models/Shuttle/shuttle.xml</path>
+  <path>Aircraft/AN-225/Models/Effects/Submodels/Shuttle/shuttle.xml</path>
   <offsets>
    <x-m>5.0</x-m>
    <y-m>0</y-m>
    <z-m>11.95</z-m>
   </offsets>
   </model>
- 
-
- <model>
-  <name>Rocket-Booster</name>
-  <path>Aircraft/AN-225/Models/Shuttle/solid-rocket-booster.xml</path>
-  <offsets>
-   <x-m>4.0</x-m>
-   <y-m>0</y-m>
-   <z-m>7.95</z-m>
-  </offsets>
- </model>
-  
+   
    <model>
   <name>Fuel-Tank-Shuttle</name>
-  <path>Aircraft/AN-225/Models/Shuttle/external-fuel-tank.xml</path>
+  <path>Aircraft/AN-225/Models/Effects/Submodels/Shuttle/external-fuel-tank.xml</path>
   <offsets>
    <x-m>4.0</x-m>
    <y-m>0</y-m>
@@ -5204,7 +5207,7 @@ AN225 model/animation config.
  
   
         <model>
-		<path>Aircraft/AN-225/Models/Effects/smoke/smoke_1.xml</path>
+		<path>Aircraft/AN-225/Models/Effects/smoke/smoke_6.xml</path>
 		<offsets>
 			<x-m> 11.0 </x-m>
                         <y-m> 25.0 </y-m>
@@ -5213,7 +5216,7 @@ AN225 model/animation config.
 	</model>
 	
 	<model>
-		<path>Aircraft/AN-225/Models/Effects/smoke/smoke_2.xml</path>
+		<path>Aircraft/AN-225/Models/Effects/smoke/smoke_5.xml</path>
 		<offsets>
 			<x-m> 6.7 </x-m>
                         <y-m> 17.2 </y-m>
@@ -5222,7 +5225,7 @@ AN225 model/animation config.
 	</model>
 	
 	<model>
-		<path>Aircraft/AN-225/Models/Effects/smoke/smoke_3.xml</path>
+		<path>Aircraft/AN-225/Models/Effects/smoke/smoke_4.xml</path>
 		<offsets>
 			<x-m> 2.0 </x-m>
                         <y-m>  9.40 </y-m>
@@ -5232,7 +5235,7 @@ AN225 model/animation config.
 	
 	
 	<model>
-		<path>Aircraft/AN-225/Models/Effects/smoke/smoke_4.xml</path>
+		<path>Aircraft/AN-225/Models/Effects/smoke/smoke_3.xml</path>
 		<offsets>
 			<x-m> 2.0 </x-m>
                         <y-m>  -9.40 </y-m>
@@ -5241,7 +5244,7 @@ AN225 model/animation config.
 	</model>
 	
 	<model>
-		<path>Aircraft/AN-225/Models/Effects/smoke/smoke_5.xml</path>
+		<path>Aircraft/AN-225/Models/Effects/smoke/smoke_2.xml</path>
 		<offsets>
 			<x-m> 6.7 </x-m>
                         <y-m> -17.2 </y-m>
@@ -5251,7 +5254,7 @@ AN225 model/animation config.
 	
 	
 	<model>
-		<path>Aircraft/AN-225/Models/Effects/smoke/smoke_6.xml</path>
+		<path>Aircraft/AN-225/Models/Effects/smoke/smoke_1.xml</path>
 		<offsets>
 			<x-m> 11.0 </x-m>
                         <y-m> -25.0 </y-m>
@@ -5259,75 +5262,371 @@ AN225 model/animation config.
 		</offsets>
 	</model>
 
-	
-	<!-- Lights from 707 M.Kraus adopted by HerbyW 01/2015
-        <model>
-		<name>ExternalLights</name>
-		<path>Aircraft/AN-225/Models/Lights/AN-225_Lights.xml</path>	
-		<offsets>
-			<x-m>0</x-m>
-			<y-m>0</y-m>
-			<z-m>0</z-m>
-		</offsets>
-	</model>     -->
+<!-- Chokes -->
 
-	<model>
-		<name>Strobe_1</name>
-		<path>Aircraft/AN-225/Models/Lights/strobe-red.xml</path>	
-		<offsets>
-			<x-m>19.25</x-m>
-			<y-m>-43.75</y-m>
-			<z-m>1.65</z-m>
-		</offsets>
-	</model>   
+<model>
+	<name>choke_nose</name>
+	<path>Aircraft/AN-225/Models/Effects/ground/choke_nose.xml</path>
+	<condition>
+		<equals>
+			<property>sim/multiplay/generic/int[3]</property>
+			<value>1</value>
+		</equals>
+	</condition>
+	<offsets>
+	 <x-m> 3.55 </x-m>
+         <y-m> 0.0 </y-m>
+         <z-m> 4.0 </z-m>
+	</offsets>
 	
-	<model>
-		<name>Strobe_4</name>
-		<path>Aircraft/AN-225/Models/Lights/strobe-green.xml</path>	
-		<offsets>
-			<x-m>19.25</x-m>
-			<y-m>43.75</y-m>
-			<z-m>1.65</z-m>
-		</offsets>
-	</model>  
-	
-	<model>
-		<name>Strobe_2</name>
-		<path>Aircraft/AN-225/Models/Lights/strobe-white.xml</path>	
-		<offsets>
-			<x-m>21.5</x-m>
-			<y-m>-42.95</y-m>
-			<z-m>1.7</z-m>
-		</offsets>
-	</model>   
-	
-	<model>
-		<name>Strobe_5</name>
-		<path>Aircraft/AN-225/Models/Lights/strobe-white.xml</path>	
-		<offsets>
-			<x-m>21.5</x-m>
-			<y-m>42.95</y-m>
-			<z-m>1.7</z-m>
-		</offsets>
-	</model>   
-	<model>
-		<name>Strobe_6</name>
-		<path>Aircraft/AN-225/Models/Lights/strobe-white.xml</path>	
-		<offsets>
-			<x-m>52.5</x-m>
-			<y-m>15.2</y-m>
-			<z-m>6.39</z-m>
-		</offsets>
-	</model>   
-	<model>
-		<name>Strobe_7</name>
-		<path>Aircraft/AN-225/Models/Lights/strobe-white.xml</path>	
-		<offsets>
-			<x-m>52.5</x-m>
-			<y-m>-15.2</y-m>
-			<z-m>6.39</z-m>
-		</offsets>
-	</model>   
-	
-	
+</model>
+
+<model>
+	<name>choke_left</name>
+	<path>Aircraft/AN-225/Models/Effects/ground/choke_left.xml</path>
+	<condition>
+		<equals>
+			<property>sim/multiplay/generic/int[3]</property>
+			<value>1</value>
+		</equals>
+	</condition>
+	<offsets>
+	 <x-m> -13.2 </x-m>
+         <y-m> 4.1 </y-m>
+         <z-m> 5.55 </z-m>
+	</offsets>
+</model>
+
+<model>
+	<name>choke_right</name>
+	<path>Aircraft/AN-225/Models/Effects/ground/choke_right.xml</path>
+	<condition>
+		<equals>
+			<property>sim/multiplay/generic/int[3]</property>
+			<value>1</value>
+		</equals>
+	</condition>
+	<offsets>
+	 <x-m> -13.2 </x-m>
+         <y-m> -4.1 </y-m>
+         <z-m> 5.55 </z-m>
+	</offsets>
+</model>
+
+<!-- Lighting effects -->
+<!-- Beacon: red-orange at top and bottom of fuselage -->
+  <model>
+    <path>Aircraft/AN-225/Models/light/beacon.xml</path>
+    <offsets>
+      <x-m> 15.0 </x-m>
+      <y-m>  0.00000 </y-m>
+      <z-m>  -3.08 </z-m>
+    </offsets>
+  </model>
+  <model>
+    <path>Aircraft/AN-225/Models/light/beacon.xml</path>
+    <offsets>
+      <x-m> -5.29 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m>  5.9 </z-m>
+    </offsets>
+  </model>
+  
+  <!-- VavLights: green-right, red-left -->
+  <model>
+    <path>Aircraft/AN-225/Models/light/RedLight.xml</path>
+    <offsets>
+      <x-m>19.25</x-m>
+      <y-m>-43.75</y-m>
+      <z-m>1.65</z-m>
+    </offsets>
+  </model>  
+  <model>
+    <path>Aircraft/AN-225/Models/light/GreenLight.xml</path>
+    <offsets>
+      <x-m>19.25</x-m>
+      <y-m>43.75</y-m>
+      <z-m>1.65</z-m>
+    </offsets>
+  </model>
+
+  <!-- PositionLights: white-steady NAV-lights: 2 on tail, 2 on middle wings, 2 at nose, 2 on front outer wings-->
+   
+    
+   <model>
+    <path>Aircraft/AN-225/Models/light/WhiteLight.xml</path>    
+     <offsets>
+      <x-m>52.5</x-m>
+      <y-m>15.2</y-m>
+      <z-m>6.39</z-m>
+     </offsets>
+   </model>
+   
+   <model>
+    <path>Aircraft/AN-225/Models/light/WhiteLight.xml</path>    
+     <offsets>
+      <x-m>52.5</x-m>
+      <y-m>-15.2</y-m>
+      <z-m>6.39</z-m>
+     </offsets>
+   </model>
+  
+   <model>
+    <path>Aircraft/AN-225/Models/light/WhiteLight.xml</path>
+     <offsets>
+      <x-m>-3.45</x-m>
+      <y-m>8.34</y-m>
+      <z-m>4.58</z-m>
+     </offsets>
+   </model>
+   
+   <model>
+    <path>Aircraft/AN-225/Models/light/WhiteLight.xml</path>
+     <offsets>
+      <x-m>-3.45</x-m>
+      <y-m>-8.34</y-m>
+      <z-m>4.58</z-m>
+     </offsets>
+   </model>
+  
+   <model>
+    <path>Aircraft/AN-225/Models/light/WhiteLight.xml</path>    
+     <offsets>
+      <x-m>-27.95 </x-m>
+      <y-m>  1.50 </y-m>
+      <z-m> -0.90 </z-m>
+     </offsets>
+   </model>
+   
+   <model>
+    <path>Aircraft/AN-225/Models/light/WhiteLight.xml</path>    
+     <offsets>
+      <x-m>-27.95 </x-m>
+      <y-m> -1.50 </y-m>
+      <z-m> -0.90 </z-m>
+     </offsets>
+   </model>
+
+   <model>
+    <path>Aircraft/AN-225/Models/light/WhiteLight.xml</path>
+     <offsets>
+      <x-m>17.25</x-m>
+      <y-m>42.034</y-m>
+      <z-m>1.9</z-m>
+     </offsets>
+   </model>
+   
+   <model>
+    <path>Aircraft/AN-225/Models/light/WhiteLight.xml</path>
+     <offsets>
+      <x-m>17.25</x-m>
+      <y-m>-42.034</y-m>
+      <z-m>1.9</z-m>
+     </offsets>
+   </model>
+  
+  <!-- StrobeLights: white-pulse, left-right wings and ruder-->
+  <model>
+    <path>Aircraft/AN-225/Models/light/StrobeLight.xml</path>
+    <offsets>
+      <x-m>21.5</x-m>
+      <y-m>42.95</y-m>
+      <z-m>1.7</z-m>
+    </offsets>
+  </model>
+  
+  <model>
+    <path>Aircraft/AN-225/Models/light/StrobeLight.xml</path>
+    <offsets>
+      <x-m>21.5</x-m>
+      <y-m>-42.95</y-m>
+      <z-m>1.7</z-m>
+    </offsets>
+  </model>
+  
+  <model>
+    <path>Aircraft/AN-225/Models/light/StrobeLight.xml</path>
+    <offsets>
+      <x-m> 51.20 </x-m>
+      <y-m>-14.32 </y-m>
+      <z-m> 13.5 </z-m>
+    </offsets>
+  </model>
+  
+  <model>
+    <path>Aircraft/AN-225/Models/light/StrobeLight.xml</path>
+    <offsets>
+      <x-m> 51.20 </x-m>
+      <y-m> 14.32 </y-m>
+      <z-m> 13.5 </z-m>
+    </offsets>
+  </model>
+  
+  
+   
+  <!-- Lighting Landing without Rembrand-->
+ <model>
+  <path>Aircraft/AN-225/Models/light/WhiteLight.xml</path>
+   <condition>
+    
+      <or>
+	  <property>sim/multiplay/generic/int[9]</property>
+	  <property>sim/multiplay/generic/int[10]</property>
+      </or>
+     
+   </condition>
+     <offsets>
+      <x-m> 2.0 </x-m>
+      <y-m>  -3.85 </y-m>
+      <z-m>  -2.05 </z-m>
+     </offsets>
+ </model> 
+    
+ <model>
+    <path>Aircraft/AN-225/Models/light/WhiteLight.xml</path>
+    <condition>
+    
+      <or>
+	  <property>sim/multiplay/generic/int[9]</property>
+	  <property>sim/multiplay/generic/int[10]</property>
+      </or>
+     
+   </condition>
+     <offsets>
+      <x-m> 2.0 </x-m>
+      <y-m>   3.85 </y-m>
+      <z-m>  -2.05 </z-m>
+     </offsets>
+ </model>
+ 
+ <model>  
+    <path>Aircraft/AN-225/Models/light/WhiteLight.xml</path>
+    
+      <condition>
+       <and>
+        <or>
+	  <property>sim/multiplay/generic/int[9]</property>
+	  <property>sim/multiplay/generic/int[10]</property>
+        </or>       
+	  <property>gear/gear[0]/position-norm</property>       
+      </and>
+     </condition>
+    
+     <offsets>
+      <x-m> -20.5 </x-m>
+      <y-m>   0.0 </y-m>
+      <z-m>  -2.5 </z-m>
+     </offsets>
+ </model> 
+  
+  <!-- Lighting Landing 154 beginn, External lights for Rembrand-->
+ <model>
+  <path>Aircraft/AN-225/Models/light/headlight-landing.xml</path>
+  <name>headlight_c</name>
+  <condition>
+      <property>/sim/rendering/rembrandt/enabled</property>
+    </condition>
+  <offsets>
+    <x-m>-29.037</x-m>
+    <y-m>0.0</y-m>
+    <z-m>-0.55</z-m>
+   <pitch-deg>79.0</pitch-deg>
+  </offsets>
+ </model>
+ 
+ <model>
+  <path>Aircraft/AN-225/Models/light/headlight-landing.xml</path>
+  <name>headlight_l</name>
+  <condition>
+      <property>/sim/rendering/rembrandt/enabled</property>
+    </condition>
+  <offsets>
+   <x-m>-13.71</x-m>
+   <y-m>-3.81</y-m>
+   <z-m>-0.1</z-m>
+   <pitch-deg>78.8</pitch-deg>
+  </offsets>
+ </model>
+ 
+ <model>
+  <path>Aircraft/AN-225/Models/light/headlight-landing.xml</path>
+  <name>headlight_r</name>
+  <condition>
+      <property>/sim/rendering/rembrandt/enabled</property>
+    </condition>
+  <offsets>
+   <x-m>-13.71</x-m>
+   <y-m>3.81</y-m>
+   <z-m>-0.1</z-m>
+   <pitch-deg>78.8</pitch-deg>
+  </offsets>
+ </model>
+ 
+ <model>
+  <path>Aircraft/AN-225/Models/light/headlight-taxi.xml</path>
+  <name>taxilight_c</name>
+  <condition>
+      <property>/sim/rendering/rembrandt/enabled</property>
+    </condition>
+  <offsets>
+    <x-m>-29.037</x-m>
+    <y-m>0.0</y-m>
+    <z-m>-0.55</z-m>
+   <pitch-deg>70.0</pitch-deg>
+  </offsets>
+ </model>
+ 
+ <model>
+  <path>Aircraft/AN-225/Models/light/headlight-taxi.xml</path>
+  <name>taxilight_l</name>
+  <condition>
+      <property>/sim/rendering/rembrandt/enabled</property>
+    </condition>
+  <offsets>
+   <x-m>-13.71</x-m>
+   <y-m>-3.81</y-m>
+   <z-m>-0.1</z-m>
+   <pitch-deg>70.0</pitch-deg>
+  </offsets>
+ </model>
+ 
+ <model>
+  <path>Aircraft/AN-225/Models/light/headlight-taxi.xml</path>
+  <name>taxilight_r</name>
+  <condition>
+      <property>/sim/rendering/rembrandt/enabled</property>
+    </condition>
+  <offsets>
+   <x-m>-13.71</x-m>
+   <y-m>3.81</y-m>
+   <z-m>-0.1</z-m>
+   <pitch-deg>70.0</pitch-deg>
+  </offsets>
+ </model>
+  <!-- Lighting Landing 154 end -->
+  
+  <!-- Lighting Landing without Rembrand -->
+  <model>
+  <path>Aircraft/AN-225/Models/light/light-cone-707.xml</path>
+  <name>taxilight_r</name>
+  <offsets>
+   <x-m> -8.0 </x-m>
+      <y-m>  0.0 </y-m>
+      <z-m>  -4.2 </z-m>
+   <pitch-deg>0.10</pitch-deg>
+  </offsets>
+ </model>
+ <model>
+  <path>Aircraft/AN-225/Models/light/light-cone-taxi-707.xml</path>
+  <name>taxilight_r</name>
+  <offsets>
+   <x-m> -8.0 </x-m>
+      <y-m>  0.0 </y-m>
+      <z-m>  -1.25 </z-m>
+   <pitch-deg>-2.0</pitch-deg>
+  </offsets>
+ </model>
+  
+
+
 </PropertyList>
