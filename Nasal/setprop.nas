@@ -1,13 +1,17 @@
-
-
-#    ###################################################################################
-#    Antonov-Aircrafts and SpaceShuttle :: Herbert Wagner November2014-March2015
+#############################################################################
+#    (C) 2008, 2013 by Yurik V. Nikiforoff - port for FGFS,  FDM, 	  	#
+#	2d & 3d instruments, animations, systems and over.		   	#
+#    	yurik.nsk@gmail.com					   	#
+#############################################################################  
+####################################################################################################
+#    Antonov-Aircrafts and SpaceShuttle :: Herbert Wagner November2014-May2015
 #    Development is ongoing, see latest version: www.github.com/HerbyW
 #    This file is licenced under the terms of the GNU General Public Licence V3 or later
 #    
-#    Firefly: 3D model improvment: ruder, speedbreak, ailerions, all gears and doors
-#    Eagel: Liveries
-#    ###################################################################################
+#    Reverser, SpaceShuttle, Instrumentation and all Animations for gears, tail-gear-steering, flaps,
+#    slats, spoilers, rudder, aelerion and lights for MP-modus with and without Rembrandt added.
+#    Thanks for helping with some coding: D-LEON
+###################################################################################################
 
 
 #UVID-15 Control for Pressure in mmhg and inhg
@@ -365,4 +369,66 @@ setlistener("/controls/shuttle/payload", func
      
 });     
 
-#########################################################################################################
+
+#############################################################################################################
+# Lake of Constance Hangar :: M.Kraus
+# April 2013
+# This file is licenced under the terms of the GNU General Public Licence V2 or later
+# ============================================
+# The analog watch for the flightgear - rallye 
+# ============================================
+var sw = "/instrumentation/stopwatch/";
+
+
+#============================== only stopwatch actions ================================
+var sw_start_stop = func {
+  var running = props.globals.getNode(sw~"running");
+
+  if(!running.getBoolValue()){
+    # start
+    setprop(sw~"flight-time/start-time", getprop("/sim/time/elapsed-sec"));
+    running.setBoolValue(1);
+    sw_loop();
+  }else{
+    # stop
+    var accu = getprop(sw~"flight-time/accu");
+    accu += getprop("/sim/time/elapsed-sec") - getprop(sw~"flight-time/start-time");
+    setprop(sw~"running",0);
+    setprop(sw~"flight-time/accu", accu);
+    sw_show(accu);
+  }
+}
+
+var sw_reset = func {
+  var running = props.globals.getNode(sw~"running");
+  setprop(sw~"flight-time/accu", 0);
+
+  if(running.getBoolValue()){
+    setprop(sw~"flight-time/start-time", getprop("/sim/time/elapsed-sec"));
+  }else{
+    sw_show(0);
+  }
+}
+
+var sw_loop = func {
+  var running = props.globals.getNode(sw~"running");
+  if(running.getBoolValue()){
+    sw_show(getprop("/sim/time/elapsed-sec") - getprop(sw~"flight-time/start-time") + getprop(sw~"flight-time/accu"));
+    settimer(sw_loop, 0.04);
+  }
+}
+
+var sw_show = func(s) {
+  var hours = s / 3600;
+  var minutes = int(math.mod(s / 60, 60));
+  var seconds = int(math.mod(s, 60));
+
+  setprop(sw~"flight-time/total",s);
+  setprop(sw~"flight-time/hours",hours);
+  setprop(sw~"flight-time/minutes",minutes);
+  setprop(sw~"flight-time/seconds",seconds);
+}
+
+#############################################################################################################
+
+
