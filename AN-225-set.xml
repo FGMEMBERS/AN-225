@@ -18,6 +18,21 @@ AN-225 set file.
     <status>beta</status>
     <author>Lee Elliott</author>
     <aero>AN-225-yasim</aero>
+    <tags>
+      <tag>antonov</tag>
+      <tag>high-wing</tag>
+      <tag>tricycle</tag>
+      <tag>retractable-gear</tag>
+      <tag>multi-engine</tag>
+      <tag>jet</tag>
+      <tag>ifr</tag>
+      <tag>cargo</tag>
+      <tag>etops</tag>
+      <tag>1980s</tag>
+      <tag>1990s</tag>
+      <tag>2000s</tag>
+      <tag>2010s</tag>
+    </tags>
     <fuel-fraction>0.6</fuel-fraction>
     <description>Antonov AN-225 heavy/outsize cargo aircraft (YASim fdm)</description>
     <virtual-cockpit archive="y">true</virtual-cockpit>
